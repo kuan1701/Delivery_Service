@@ -10,7 +10,6 @@ public class User {
 	private String username;
 	private String email;
 	private String password;
-	private String confirmedPassword;
 	private String deliveryAddress;
 	
 	private static Integer count = 0;
@@ -92,14 +91,6 @@ public class User {
 	
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	
-	public String getConfirmedPassword() {
-		return confirmedPassword;
-	}
-	
-	public void setConfirmedPassword(String confirmedPassword) {
-		this.confirmedPassword = confirmedPassword;
 	}
 	
 	public String getDeliveryAddress() {

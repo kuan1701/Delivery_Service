@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserService {
 
-	User save(String name, String surname, String username, String email, String password, String confirmedPassword, String deliveryAddress);
+	User save(String name, String surname, String username, String email, String password, String deliveryAddress);
 	
 	void delete(String username);
 	

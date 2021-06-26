@@ -33,7 +33,8 @@ public class Shop {
 	
 	@Override
 	public String toString() {
-		return "Shop: " + name + ".\n" +
+		return "Shop: " + shopId + ".\n" +
+				"Shop: " + name + ".\n" +
 				"Address: " + address + ".\n" +
 				"Markup: " + markup + ".\n";
 	}

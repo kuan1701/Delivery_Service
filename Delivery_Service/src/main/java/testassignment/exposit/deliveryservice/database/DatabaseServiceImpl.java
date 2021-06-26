@@ -10,22 +10,22 @@ import java.util.List;
 
 public class DatabaseServiceImpl implements DataBaseService{
 	
-	public static final String JSON_USERS = "src/userJSON.json";
-	public static final String JSON_SHOP = "src/shopJSON.json";
-	public static final String JSON_PRODUCT = "src/productJSON.json";
-	public static final String JSON_PRODUCTSHOP = "src/productShopJSON.json";
-	public static final String JSON_ORDER = "src/orderJSON.json";
+	public static final String JSON_SHOP = "shop.json";
+	public static final String JSON_USER = "user.json";
+	public static final String JSON_ORDER = "order.json";
+	public static final String JSON_PRODUCT = "product.json";
+	public static final String JSON_PRODUCTSHOP = "productShop.json";
 	
 	@Override
 	public void saveListOfUser(List<User> userList) {
-		JsonParserClass.parseToJson(JSON_USERS, userList);
+		JsonParserClass.parseToJson(JSON_USER, userList);
 	}
 	
 	@Override
 	public List<User> loadListOfUser() {
 		
 		return (List<User>) JsonParserClass
-				.parseFromJson(JSON_USERS, new TypeToken<LinkedList<User>>(){}
+				.parseFromJson(JSON_USER, new TypeToken<LinkedList<User>>(){}
 				.getType());
 	}
 	
@@ -38,7 +38,7 @@ public class DatabaseServiceImpl implements DataBaseService{
 	public List<Product> loadListOfProduct() {
 		
 		return (List<Product>) JsonParserClass
-				.parseFromJson(JSON_USERS, new TypeToken<LinkedList<Product>>(){}
+				.parseFromJson(JSON_PRODUCT, new TypeToken<LinkedList<Product>>(){}
 				.getType());
 	}
 	
@@ -51,12 +51,12 @@ public class DatabaseServiceImpl implements DataBaseService{
 	public List<Shop> loadListOfShop() {
 		
 		return (List<Shop>) JsonParserClass
-				.parseFromJson(JSON_USERS, new TypeToken<LinkedList<Shop>>(){}
+				.parseFromJson(JSON_SHOP, new TypeToken<LinkedList<Shop>>(){}
 				.getType());
 	}
 	
 	@Override
-	public void saveShopProductList(List<ProductShop> productShopList) {
+	public void saveProductShopList(List<ProductShop> productShopList) {
 		JsonParserClass.parseToJson(JSON_PRODUCTSHOP, productShopList);
 	}
 	
@@ -64,7 +64,7 @@ public class DatabaseServiceImpl implements DataBaseService{
 	public List<ProductShop> loadListOfProductShop() {
 		
 		return (List<ProductShop>) JsonParserClass
-				.parseFromJson(JSON_USERS, new TypeToken<LinkedList<ProductShop>>(){}
+				.parseFromJson(JSON_PRODUCTSHOP, new TypeToken<LinkedList<ProductShop>>(){}
 				.getType());
 	}
 	

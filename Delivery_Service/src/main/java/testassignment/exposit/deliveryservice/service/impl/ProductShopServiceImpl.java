@@ -18,17 +18,17 @@ public class ProductShopServiceImpl implements ProductShopService {
 	
 	
 	@Override
-	public ProductShop save(Integer shopId, Integer productId, Integer quantity, Boolean inStock) {
+	public ProductShop save(Integer shopId, Integer productId, Integer quantity) {
 		
 		ProductShop productShop = new ProductShop();
 		try {
-			System.out.println("Enter store ID: ");
+			// finding store by store ID
 			productShop.setShop(databaseService.findShopById(shopId));
 		} catch (ObjectNotFoundException e) {
 			System.err.println(e);
 		}
 		try {
-			System.out.println("Enter product ID: ");
+			// finding product by product ID
 			productShop.setProduct(databaseService.findProductById(productId));
 		} catch (ObjectNotFoundException e) {
 			System.err.println(e);
@@ -40,10 +40,11 @@ public class ProductShopServiceImpl implements ProductShopService {
 		} catch (ObjectNotFoundException e) {
 			System.err.println(e);
 		}
-		System.out.println("Enter product quantity: ");
 		productShop.setQuantity(quantity);
-		System.out.println("Product successfully added to database.");
+		productShop.setInStock(true);
 		productShopList.add(productShop);
+		databaseService.saveProductShopList(productShopList);
+		System.out.println("Product successfully added to database.");
 		return productShop;
 	}
 	
@@ -63,7 +64,7 @@ public class ProductShopServiceImpl implements ProductShopService {
 	}
 	
 	@Override
-	public void SortByCategory(String filterCategory) {
+	public void sortByCategory(String filterCategory) {
 		
 		for (ProductCategories productCategories : ProductCategories.values()
 		) {

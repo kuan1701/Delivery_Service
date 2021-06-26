@@ -2,19 +2,19 @@ package testassignment.exposit.deliveryservice.model.enums;
 
 public enum ProductCategories {
 
-	APPLIANCES (1,"Appliances"),
-	ELECTRONICS (2,"Electronics"),
-	VEGETABLES (3,"Vegetables"),
-	FRUITS (4,"Fruits"),
-	BEVERAGES (5,"Beverages"),
-	MILKPRODUCTS (6,"Milk products"),
-	MEATPRODUCTS (7,"Meat products"),
-	GROCERY (8,"Grocery"),
-	SWEETS (9,"Sweets"),
-	FROZENFOOD (10,"Frozen food"),
-	HOUSEHOLD (11,"Household"),
-	KIDS (12, "Kids"),
-	SUNDRIES (13, "Sundries");
+	APPLIANCES (1,"APPLIANCES"),
+	ELECTRONICS (2,"ELECTRONICS"),
+	VEGETABLES (3,"VEGETABLES"),
+	FRUITS (4,"FRUITS"),
+	BEVERAGES (5,"BEVERAGES"),
+	MILKPRODUCTS (6,"MILK PRODUCTS"),
+	MEATPRODUCTS (7,"MEATPRODUCTS"),
+	GROCERY (8,"GROCERY"),
+	SWEETS (9,"SWEETS"),
+	FROZENFOOD (10,"FROZEN FOOD"),
+	HOUSEHOLD (11,"HOUSEHOLD"),
+	KIDS (12, "KIDS"),
+	SUNDRIES (13, "SUNDRIES");
 	
 	public Integer code;
 	public String category;

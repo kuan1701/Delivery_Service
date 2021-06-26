@@ -1,9 +1,6 @@
 package testassignment.exposit.deliveryservice.model;
 
-import testassignment.exposit.deliveryservice.model.enums.OrderStatus;
-
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 public class Order {
@@ -12,9 +9,8 @@ public class Order {
 	private String deliveryAddress;
 	private Double totalPrice;
 	private String date;
-	private OrderStatus orderStatus;
-	
-	private List<ProductShop> productShopListInOrder;
+	private Integer quantity;
+	private ProductShop productShop;
 	
 	private static Integer count = 0;
 	
@@ -31,23 +27,21 @@ public class Order {
 		return orderId.equals(order.orderId) &&
 				deliveryAddress.equals(order.deliveryAddress) &&
 				totalPrice.equals(order.totalPrice) &&
-				date.equals(order.date) &&
-				orderStatus.equals(order.orderStatus);
+				date.equals(order.date);
 	}
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(orderId,deliveryAddress, totalPrice, date, orderStatus);
+		return Objects.hash(orderId,deliveryAddress, totalPrice, date);
 	}
 	
 	@Override
 	public String toString() {
 		return "Order: " + orderId + ".\n" +
 				"Delivery address: " + deliveryAddress + ".\n" +
-				"Products list: " + productShopListInOrder + ".\n" +
-				"Total price: " + getTotalPrice() + ".\n" +
-				"Date: " + date + ".\n" +
-				"Order status: " + orderStatus.getStatus() + ".\n";
+				"Product: " + productShop + ".\n" +
+				"Total price: " + totalPrice + ".\n" +
+				"Date: " + date + ".\n";
 	}
 	
 	public Integer getOrderId() {
@@ -68,10 +62,7 @@ public class Order {
 	
 	public Double getTotalPrice() {
 		
-		for (ProductShop productShop : productShopListInOrder) {
-			totalPrice += productShop.getPrice();
-		}
-		return totalPrice;
+		return productShop.getPrice() * quantity;
 	}
 	
 	public void setTotalPrice(Double totalPrice) {
@@ -87,19 +78,19 @@ public class Order {
 		this.date = date;
 	}
 	
-	public OrderStatus getOrderStatus() {
-		return orderStatus;
+	public ProductShop getProductShop() {
+		return productShop;
 	}
 	
-	public void setOrderStatus(OrderStatus orderStatus) {
-		this.orderStatus = orderStatus;
+	public void setProductShop(ProductShop productShopList) {
+		this.productShop = productShopList;
 	}
 	
-	public List<ProductShop> getProductShopList() {
-		return productShopListInOrder;
+	public Integer getQuantity() {
+		return quantity;
 	}
 	
-	public void setProductShopList(List<ProductShop> productShopList) {
-		this.productShopListInOrder = productShopList;
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 }

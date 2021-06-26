@@ -17,14 +17,14 @@ public class JsonParserClass {
 	public static Object parseFromJson(String filePath, Type listType) {
 		
 		try {
-			var bufferedReader = new BufferedReader(new FileReader(filePath));
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));
 			return gson.fromJson(bufferedReader, listType);
 		}catch (FileNotFoundException e){
-			System.out.println("Parsing error " + e.toString());
+			System.out.println("Parsing from json error " + e.toString());
 			
 			switch (filePath) {
 				
-				case DatabaseServiceImpl.JSON_USERS: new File(DatabaseServiceImpl.JSON_USERS);
+				case DatabaseServiceImpl.JSON_USER: new File(DatabaseServiceImpl.JSON_USER);
 				break;
 				
 				case DatabaseServiceImpl.JSON_PRODUCT: new File(DatabaseServiceImpl.JSON_PRODUCT);
@@ -46,12 +46,11 @@ public class JsonParserClass {
 	public static void parseToJson(String filePath, Object object) {
 		
 		try {
-			FileWriter writer = new FileWriter(filePath, true);
+			FileWriter writer = new FileWriter(filePath);
 			writer.write(gson.toJson(object));
-			writer.flush();
 			writer.close();
 		}catch (IOException e){
-			System.out.println("Parsing error " + e.toString());
+			System.out.println("Parsing to json error " + e.toString());
 		}
 	}
 }

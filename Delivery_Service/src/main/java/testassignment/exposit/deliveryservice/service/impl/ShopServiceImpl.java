@@ -15,11 +15,8 @@ public class ShopServiceImpl implements ShopService {
 	public Shop save(String name, String address, Double markup) {
 		
 		Shop shop = new Shop();
-		System.out.println("Enter the name of the store: ");
 		shop.setName(name);
-		System.out.println("Enter the address of the store: ");
 		shop.setAddress(address);
-		System.out.println("Enter store markup: ");
 		shop.setMarkup(markup);
 		
 		boolean userExists = shopList.stream()
@@ -27,6 +24,7 @@ public class ShopServiceImpl implements ShopService {
 				&& shopDB.getAddress().equals(shop.getAddress()));
 		if (!userExists) {
 			shopList.add(shop);
+			databaseService.saveListOfShop(shopList);
 			System.out.println("The store has been successfully added to the database.");
 		}
 		else System.out.println("This store is already in the database.");
@@ -58,6 +56,7 @@ public class ShopServiceImpl implements ShopService {
 		} else {
 			System.out.println("This shop does not exist");
 		}
+		databaseService.saveListOfShop(shopList);
 		return shop;
 	}
 }

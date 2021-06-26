@@ -20,7 +20,7 @@ public interface DataBaseService {
 	
 	List<Shop> loadListOfShop();
 	
-	void saveShopProductList (List <ProductShop> productList);
+	void saveProductShopList (List <ProductShop> productList);
 	
 	List<ProductShop> loadListOfProductShop();
 	

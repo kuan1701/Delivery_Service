@@ -4,11 +4,11 @@ import testassignment.exposit.deliveryservice.model.ProductShop;
 
 public interface ProductShopService {
 	
-	ProductShop save(Integer shopId, Integer productId, Integer quantity, Boolean inStock);
+	ProductShop save(Integer shopId, Integer productId, Integer quantity);
 	
 	void delete(Integer productShopId);
 	
-	void SortByCategory (String filterCategory);
+	void sortByCategory (String filterCategory);
 	
 	void sortByCheapest();
 	

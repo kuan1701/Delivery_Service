@@ -18,23 +18,19 @@ public class ProductServiceImpl implements ProductService {
 		ProductCategories productCategories;
 		
 		Product product = new Product();
-		System.out.println("Enter the product name: ");
 		product.setName(name);
-		
-		System.out.println("Enter the product price: ");
 		product.setPrice(price);
 		
-		System.out.println("Enter the product category: ");
+		//entering the product category
 		for (ProductCategories elem : ProductCategories.values()) {
 			if (elem.name().equalsIgnoreCase(category)) {
 				product.setProductCategories(ProductCategories.valueOf(category.toUpperCase()));
-				break;
 			}
-			product.setProductCategories(ProductCategories.SUNDRIES);
-			
+			//else product.setProductCategories(ProductCategories.SUNDRIES);
 			productList.add(product);
-			System.out.println("Product successfully created.");
+			databaseService.saveProductList(productList);
 		}
+		System.out.println("Product successfully created.");
 		return product;
 	}
 	
@@ -53,7 +49,6 @@ public class ProductServiceImpl implements ProductService {
 	public Product update(Integer productId, String name, Double price) {
 		
 		Product product = productList.get(productId);
-		
 		if (product != null) {
 			System.out.println("Enter the new product name: ");
 			product.setName(name);
@@ -64,6 +59,7 @@ public class ProductServiceImpl implements ProductService {
 		} else {
 			System.out.println("This product does not exist");
 		}
+		databaseService.saveProductList(productList);
 		return product;
 	}
 }

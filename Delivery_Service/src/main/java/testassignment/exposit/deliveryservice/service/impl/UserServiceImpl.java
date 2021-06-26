@@ -12,30 +12,22 @@ public class UserServiceImpl implements UserService {
 	List<User> usersList = databaseService.loadListOfUser();
 	
 	@Override
-	public User save(String name, String surname, String username, String email, String password, String confirmedPassword, String deliveryAddress) {
+	public User save(String name, String surname, String username, String email, String password,  String deliveryAddress) {
 		
 		User user = new User();
-		System.out.println("Please enter your name: ");
 		user.setName(name);
-		System.out.println("Please enter your surname: ");
 		user.setSurname(surname);
-		System.out.println("Please enter your username: ");
 		user.setUsername(username);
-		System.out.println("Please enter your email: ");
 		user.setEmail(email);
-		System.out.println("Please enter your address: ");
 		user.setDeliveryAddress(deliveryAddress);
-		System.out.println("Please enter your password: ");
 		user.setPassword(password);
-		System.out.println("Please repeat your password: ");
-		user.setConfirmedPassword(confirmedPassword);
-		
 		boolean userExists = usersList.stream()
 				.anyMatch(userDB -> userDB.getUsername().equals(user.getUsername()));
-		if (!userExists && password.equals(confirmedPassword)) {
+		if (!userExists) {
 			usersList.add(user);
+			databaseService.saveListOfUser(usersList);
 			System.out.println("Thank you, your account has been created.");
-		}
+		} else System.out.println("This user is already in the database.");
 		return user;
 	}
 	
@@ -64,6 +56,7 @@ public class UserServiceImpl implements UserService {
 		} else {
 			System.out.println("This user does not exist!");
 		}
+		databaseService.saveListOfUser(usersList);
 		return user;
 	}
 }

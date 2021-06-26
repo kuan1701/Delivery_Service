@@ -4,7 +4,7 @@ import testassignment.exposit.deliveryservice.model.Order;
 
 public interface OrderService {
 	
-	Order createAndUpdate(String address, Integer orderStatus, Integer currentStatusOrder, Integer productShopId);
+	Order create(String address, Integer productShopId, Integer quantity);
 	
 	void delete(Integer orderId);
 }

@@ -39,7 +39,7 @@ public class ProductShop implements Comparable<ProductShop> {
 				"Shop: " + shop.getName() + ".\n" +
 				"Product: " + product.getName() + ".\n" +
 				"Price: " + price + ".\n" +
-				"In stock: " + getInStock() + ".";
+				"In stock: " + getInStock() + ".\n";
 	}
 	
 	public Integer getProductShopId() {
