@@ -1,0 +1,22 @@
+{
+  "name": "Product Shop",
+  "productShopList":
+  [
+    {
+      "productShopId": 1,
+      "shop": "Shop",
+      "product": "Milk",
+      "price": 15,
+      "quantity": 20,
+      "inStock": true
+    },
+    {
+      "productShopId": 2,
+      "shop": "Shop1",
+      "product": "Juice",
+      "price": 15,
+      "quantity": 20,
+      "inStock": true
+    }
+  ]
+}

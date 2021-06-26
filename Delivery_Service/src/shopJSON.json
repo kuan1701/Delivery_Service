@@ -1,0 +1,14 @@
+[
+  {
+    "shopId": 1,
+    "name": "Shop",
+    "address": "Yellow Street",
+    "markup": 1.5
+  },
+  {
+    "shopId": 1,
+    "name": "Shop1",
+    "address": "Yellow Street",
+    "markup": 1.5
+  }
+]
