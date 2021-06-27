@@ -57,6 +57,7 @@ public class ProductShopServiceImpl implements ProductShopService {
 					.filter(user -> user.getProductShopId().equals(productShopId))
 					.findFirst()
 					.ifPresent(productShopList :: remove);
+			databaseService.saveProductShopList(productShopList);
 			System.out.println("Product successfully deleted.");
 		} catch (ObjectNotFoundException e) {
 			System.err.println(e);

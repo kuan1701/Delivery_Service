@@ -5,6 +5,4 @@ import testassignment.exposit.deliveryservice.model.Order;
 public interface OrderService {
 	
 	Order create(String address, Integer productShopId, Integer quantity);
-	
-	void delete(Integer orderId);
 }

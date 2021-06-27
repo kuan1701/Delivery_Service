@@ -38,6 +38,7 @@ public class ShopServiceImpl implements ShopService {
 				.filter(user -> user.getShopId().equals(shopId))
 				.findFirst()
 				.ifPresent(shopList::remove);
+		databaseService.saveListOfShop(shopList);
 		System.out.println("Store successfully deleted.");
 	}
 	
@@ -47,9 +48,7 @@ public class ShopServiceImpl implements ShopService {
 		Shop shop = shopList.get(shopId);
 		
 		if(shop != null) {
-			System.out.println("Enter the new address of the store: ");
 			shop.setAddress(address);
-			System.out.println("Enter the new name of the store: ");
 			shop.setName(name);
 			System.out.println("Store data updated!");
 			System.out.println(shop);

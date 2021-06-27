@@ -1,14 +1,1 @@
-[
-  {
-    "shopId":1,
-    "name":"testshop",
-    "address":"Yellow street",
-    "markup":1.5
-  },
-  {
-    "shopId":2,
-    "name":"name",
-    "address":"address",
-    "markup":2.0
-  }
-]
+[{"shopId":1,"name":"testshop","address":"Yellow street","markup":1.5},{"shopId":2,"name":"MaryStore","address":"Gaya","markup":2.0}]

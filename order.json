@@ -1,1 +1,23 @@
-[{"orderId":1,"deliveryAddress":"Gaya street","totalPrice":100.0,"date":"26/06/2021"},{"orderId":2,"quantity":9,"productShop":{"productShopId":1,"shop":{"shopId":1,"name":"testshop","address":"Yellow street","markup":1.5},"product":{"productId":1,"name":"Milk","price":5.0},"price":7.5,"quantity":20,"inStock":true}},{"orderId":3,"quantity":9,"productShop":{"productShopId":5,"shop":{"shopId":2,"name":"name","address":"address","markup":2.0},"product":{"productId":2,"name":"Meat","price":10.0},"price":20.0,"quantity":10,"inStock":true}}]
+[
+  {
+    "orderId":1,"totalPrice":180.0,
+    "quantity":9,
+    "productShop":
+    {
+      "productShopId":3,
+      "shop":{"shopId":2,
+        "name":"name",
+        "address":"address",
+        "markup":2.0
+      },
+      "product":
+      {"productId":2,
+        "name":"Meat",
+        "price":10.0
+      },
+      "price":20.0,
+      "quantity":10,
+      "inStock":true
+    }
+  }
+]

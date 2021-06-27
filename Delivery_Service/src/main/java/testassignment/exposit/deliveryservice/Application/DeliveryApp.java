@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class DeliveryApp {
 	
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		
 		Scanner scanner = new Scanner(System.in);
 		UserServiceImpl userService = new UserServiceImpl();
@@ -17,25 +17,26 @@ public class DeliveryApp {
 		DatabaseServiceImpl databaseService = new DatabaseServiceImpl();
 		ProductShopServiceImpl productShopService = new ProductShopServiceImpl();
 		
-		System.out.println("Hi, this is a grocery delivery service.\n"
-				+ "If you want create a new account, press 1.\n"
-				+ "If you want to place an order, press 2");
+		System.out.println("Hi, this is a grocery delivery service.\n");
+		System.out.println("If you want create a new account, enter 1.\n"
+				+ "If you want to place an order, enter 2.\n"
+				+ "If you want to change the data, enter 3.\n"
+				+ "If you want to delete the data, enter 4.\n"
+				+ "If you want to see the data, enter 5");
 		
-		int resultStart = scanner.nextInt();
-		
+		Integer resultStart = scanner.nextInt();
 		if (resultStart == 1) {
-			System.out.println("If you want to create a new user, press 1.\n"
-					+ "If you want to create a new shop, press 2.\n"
-					+ "If you want to create a new product, press 3.\n"
-					+ "If you want to link a product to a store, press 4.\n"
+			
+			System.out.println("If you want to create a new user, enter 1.\n"
+					+ "If you want to create a new shop, enter 2.\n"
+					+ "If you want to create a new product, enter 3.\n"
+					+ "If you want to link a product to a store, enter 4.\n"
 					+ "What operation do you want to perform?");
 			
-			int startResult = scanner.nextInt();
-			
-			if (startResult == 1) {
+			Integer operationResult = scanner.nextInt();
+			if (operationResult == 1) {
 				
 				System.out.println("Creating a new user.");
-				scanner.nextLine();
 				System.out.print("Please enter your name: ");
 				String name = scanner.nextLine();
 				System.out.print("Please enter your surname: ");
@@ -49,11 +50,9 @@ public class DeliveryApp {
 				System.out.print("Please enter your password: ");
 				String password = scanner.nextLine();
 				userService.save(name, surname, username, email, address, password);
-			}
-			else if (startResult == 2) {
+			} else if (operationResult == 2) {
 				
 				System.out.println("Adding a store.");
-				scanner.nextLine();
 				System.out.print("Enter the name of the store: ");
 				String name = scanner.nextLine();
 				System.out.print("Enter the address of the store: ");
@@ -61,16 +60,13 @@ public class DeliveryApp {
 				System.out.print("Enter store markup: ");
 				Double markup = scanner.nextDouble();
 				shopService.save(name, address, markup);
-			}
-			else if (startResult == 3) {
+			} else if (operationResult == 3) {
 				
-				System.out.print("Adding a product.");
-				scanner.nextLine();
+				System.out.println("Adding a product.");
 				System.out.print("Enter the product name: ");
 				String name = scanner.nextLine();
 				System.out.print("Enter the product price: ");
 				Double price = scanner.nextDouble();
-				
 				System.out.print("Choose a category: \n"
 						+ "Appliances\n"
 						+ "Electronics\n"
@@ -84,21 +80,17 @@ public class DeliveryApp {
 						+ "Frozen food\n"
 						+ "Household\n"
 						+ "Kids\n"
-						+ "Sundries\n");
+						+ "Sundries");
 				scanner.nextLine();
 				String productCategory = scanner.nextLine();
 				productService.save(name, price, productCategory);
-			}
-			else if (startResult == 4) {
+			} else if (operationResult == 4) {
 				
 				System.out.println("Adding a product to the store.");
-				
 				System.out.println("List of products.");
 				System.out.println(databaseService.loadListOfProduct());
 				System.out.println("List of shops.");
 				System.out.println(databaseService.loadListOfShop());
-				
-				scanner.nextLine();
 				System.out.print("Enter store ID: ");
 				Integer shopId = scanner.nextInt() - 1;
 				System.out.print("Enter product ID: ");
@@ -107,18 +99,16 @@ public class DeliveryApp {
 				Integer quantity = scanner.nextInt();
 				productShopService.save(shopId, productId, quantity);
 			}
-		}
-		if (resultStart == 2) {
+		} else if (resultStart == 2) {
 			
 			System.out.println("Creating order.");
 			System.out.println("List of products.");
 			System.out.println(databaseService.loadListOfProductShop());
-			scanner.nextLine();
-			System.out.println("Enter the delivery address: ");
+			System.out.print("Enter the delivery address: ");
 			String address = scanner.nextLine();
 			System.out.println("To add a product enter 1, if you want to sort product enter 2");
-			int currentStatusOrder = scanner.nextInt();
 			
+			Integer currentStatusOrder = scanner.nextInt();
 			if (currentStatusOrder == 1) {
 				
 				System.out.print("Enter product ID: ");
@@ -127,15 +117,15 @@ public class DeliveryApp {
 				Integer quantity = scanner.nextInt() - 1;
 				orderService.create(address, productId, quantity);
 				
-			}
-			else if (currentStatusOrder == 2) {
+			} else if (currentStatusOrder == 2) {
 				
 				System.out.println("Sort by category enter 1," +
 						" by cheapest products enter 2," +
 						" by most expensive products enter 3");
-				
 				int sort = scanner.nextInt();
+				
 				if (sort == 1) {
+					
 					String category = scanner.nextLine();
 					productShopService.sortByCategory(category);
 					System.out.print("Enter product ID: ");
@@ -143,18 +133,17 @@ public class DeliveryApp {
 					System.out.print("Enter quantity: ");
 					Integer quantity = scanner.nextInt() - 1;
 					orderService.create(address, productId, quantity);
-				}
-				else if (sort == 2) {
+				} else if (sort == 2) {
+					
 					productShopService.sortByCheapest();
 					System.out.print("Enter product ID: ");
 					Integer productId = scanner.nextInt() - 1;
 					System.out.print("Enter quantity: ");
 					Integer quantity = scanner.nextInt() - 1;
 					orderService.create(address, productId, quantity);
-				}
-				else if (sort == 3) {
-					productShopService.sortByMostExpensive();
+				} else if (sort == 3) {
 					
+					productShopService.sortByMostExpensive();
 					System.out.print("Enter product ID: ");
 					Integer productId = scanner.nextInt() - 1;
 					System.out.print("Enter quantity: ");
@@ -162,6 +151,124 @@ public class DeliveryApp {
 					orderService.create(address, productId, quantity);
 				}
 			}
+		} else if (resultStart == 3) {
+			
+			System.out.println("If you want to change user data, enter 1.\n"
+					+ "If you want to change shop data, enter 2.\n"
+					+ "If you want to change product data, enter 3.");
+			
+			Integer changeResult = scanner.nextInt();
+			if (changeResult == 1) {
+				
+				System.out.println("Changing user data.");
+				System.out.println(databaseService.loadListOfUser());
+				System.out.print("Please enter the user ID you want to change: ");
+				Integer userId = scanner.nextInt() - 1;
+				scanner.nextLine();
+				System.out.print("Please enter your new name: ");
+				String name = scanner.nextLine();
+				System.out.print("Please enter your new surname: ");
+				String surname = scanner.nextLine();
+				System.out.print("Please enter your new username: ");
+				String username = scanner.nextLine();
+				System.out.print("Please enter your new email: ");
+				String email = scanner.nextLine();
+				System.out.print("Please enter your new address: ");
+				String address = scanner.nextLine();
+				userService.update(userId, name, surname, username, email, address);
+			} else if (changeResult == 2) {
+				
+				System.out.println("Changing store data.");
+				System.out.println(databaseService.loadListOfShop());
+				System.out.print("Please enter the store ID you want to change: ");
+				Integer shopId = scanner.nextInt() - 1;
+				scanner.nextLine();
+				System.out.print("Enter the new address of the store: ");
+				String address = scanner.nextLine();
+				System.out.print("Enter the new name of the store: ");
+				String name = scanner.nextLine();
+				shopService.update(shopId, name, address);
+			} else if (changeResult == 3) {
+				
+				System.out.println("Changing product data.");
+				System.out.println(databaseService.loadListOfProduct());
+				System.out.print("Please enter the product ID you want to change: ");
+				Integer productId = scanner.nextInt() - 1;
+				scanner.nextLine();
+				System.out.print("Enter the new name of the product: ");
+				String name = scanner.nextLine();
+				System.out.print("Enter the new product price: ");
+				Double price = scanner.nextDouble();
+				productService.update(productId, name, price);
+			}
+		} else if (resultStart == 4) {
+			
+			System.out.println("If you want to delete user data, enter 1.\n"
+					+ "If you want to delete shop data, enter 2.\n"
+					+ "If you want to delete product data, enter 3.\n"
+					+ "If you want to delete product-shop data, enter 4.");
+			
+			Integer deleteResult = scanner.nextInt();
+			if (deleteResult == 1) {
+				
+				System.out.println("Deleting user data.");
+				System.out.println(databaseService.loadListOfUser());
+				System.out.print("Please enter the user ID you want to delete: ");
+				Integer userId = scanner.nextInt() - 1;
+				userService.delete(userId);
+			} else if (deleteResult == 2) {
+				
+				System.out.println("Deleting store data.");
+				System.out.println(databaseService.loadListOfShop());
+				System.out.print("Please enter the shop ID you want to delete: ");
+				Integer shopId = scanner.nextInt() - 1;
+				shopService.delete(shopId);
+			} else if (deleteResult == 3) {
+				
+				System.out.println("Deleting product data.");
+				System.out.println(databaseService.loadListOfShop());
+				System.out.print("Please enter the product ID you want to delete: ");
+				Integer productId = scanner.nextInt() - 1;
+				productService.delete(productId);
+			} else if (deleteResult == 4) {
+				
+				System.out.println("Deleting product-shop data.");
+				System.out.println(databaseService.loadListOfProductShop());
+				System.out.print("Please enter the product-shop ID you want to delete: ");
+				Integer productShopId = scanner.nextInt() - 1;
+				productShopService.delete(productShopId);
+			}
+		} else if (resultStart == 5) {
+			
+			System.out.println("If you want to see the list of users, enter 1.\n"
+					+ "If you want to see the list of shops, enter 2.\n"
+					+ "If you want to see the list of products, enter 3.\n"
+					+ "If you want to see the list of product-shops, enter 4.\n"
+					+ "If you want to see the list of orders, enter 5");
+			
+			Integer seeResult = scanner.nextInt();
+			if (seeResult == 1) {
+				
+				System.out.println("List of users.");
+				System.out.println(databaseService.loadListOfUser());
+			} else if (seeResult == 2) {
+				
+				System.out.println("List of stores.");
+				System.out.println(databaseService.loadListOfShop());
+			} else if (seeResult == 3) {
+				
+				System.out.println("List of products.");
+				System.out.println(databaseService.loadListOfProduct());
+			} else if (seeResult == 4) {
+				
+				System.out.println("List of product-shops.");
+				System.out.println(databaseService.loadListOfProductShop());
+			} else if (seeResult == 5) {
+				
+				System.out.println("List of orders.");
+				System.out.println(databaseService.loadListOfOrder());
+			}
 		}
+		scanner.close();
 	}
 }

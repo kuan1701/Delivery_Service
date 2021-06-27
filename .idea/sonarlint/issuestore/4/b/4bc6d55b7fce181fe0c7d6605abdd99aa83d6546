@@ -1,0 +1,16 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ôñ¬ò
+]
+java:S1854";Remove this useless assignment to local variable "scanner".(ù ƒ‘üÿÿÿÿ8¼ƒãÀ¤/
+a
+java:S1854"FRemove this useless assignment to local variable "productShopService".(½ðã¼ÿÿÿÿÿ
+^
+java:S1854"CRemove this useless assignment to local variable "databaseService".(ÝôŠ×ýÿÿÿÿ
+˜
+java:S1130"vRemove the declaration of thrown exception 'java.io.FileNotFoundException', as it cannot be thrown from method's body.(òá–Ýýÿÿÿÿ8”´ãÀ¤/
+O
+java:S1481"4Remove this unused "databaseService" local variable.(ÝôŠ×ýÿÿÿÿ
+R
+java:S1481"7Remove this unused "productShopService" local variable.(½ðã¼ÿÿÿÿÿ
+N
+java:S1481",Remove this unused "scanner" local variable.(ù ƒ‘üÿÿÿÿ8«’äÀ¤/

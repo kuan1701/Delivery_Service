@@ -22,23 +22,13 @@ public class OrderServiceImpl implements OrderService {
 		try {
 			order.setProductShop(databaseService.findProductShopById(productShopId));
 			order.setQuantity(quantity);
+			order.setTotalPrice(quantity * databaseService.findProductShopById(productShopId).getPrice());
 			orderList.add(order);
 			databaseService.saveOrderList(orderList);
 			System.out.println("Your order has been completed.");
-		} catch (ObjectNotFoundException e) {
-			System.err.println(e);
+		} catch (ObjectNotFoundException ex) {
+			System.err.println(ex);
 		}
 		return order;
-	}
-	
-	@Override
-	public void delete(Integer orderId) {
-		
-		orderList.stream()
-				.filter(user -> user.getOrderId().equals(orderId))
-				.findFirst()
-				.ifPresent(orderList::remove);
-		databaseService.saveOrderList(orderList);
-		System.out.println("Order successfully deleted.");
 	}
 }

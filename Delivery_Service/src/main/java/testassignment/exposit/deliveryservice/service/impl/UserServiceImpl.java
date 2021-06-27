@@ -32,23 +32,25 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public void delete(String username) {
+	public void delete(Integer userId) {
 		
 		usersList.stream()
-				.filter(user -> user.getUsername().equals(username))
+				.filter(user -> user.getUserId().equals(userId))
 				.findFirst()
 				.ifPresent(usersList::remove);
+		databaseService.saveListOfUser(usersList);
 		System.out.println("User successfully deleted.");
 	}
 	
 	@Override
-	public User update(Integer userId, String name, String surname, String email, String address) {
+	public User update(Integer userId, String name, String surname, String username, String email, String address) {
 		
 		User user = usersList.get(userId);
 		
 		if (user != null) {
 			user.setName(name);
 			user.setSurname(surname);
+			user.setUsername(username);
 			user.setEmail(email);
 			user.setDeliveryAddress(address);
 			System.out.println("Your data has been updated");

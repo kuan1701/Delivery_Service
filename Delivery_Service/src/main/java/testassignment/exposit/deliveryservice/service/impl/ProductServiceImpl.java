@@ -42,6 +42,7 @@ public class ProductServiceImpl implements ProductService {
 				.filter(user -> user.getProductId().equals(productId))
 				.findFirst()
 				.ifPresent(productList :: remove);
+		databaseService.saveProductList(productList);
 		System.out.println("Product successfully deleted.");
 	}
 	
@@ -50,9 +51,7 @@ public class ProductServiceImpl implements ProductService {
 		
 		Product product = productList.get(productId);
 		if (product != null) {
-			System.out.println("Enter the new product name: ");
 			product.setName(name);
-			System.out.println("Enter the new product price: ");
 			product.setPrice(price);
 			System.out.println("Data updated!");
 			System.out.println(product);

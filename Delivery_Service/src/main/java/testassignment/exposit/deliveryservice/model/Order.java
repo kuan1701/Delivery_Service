@@ -62,7 +62,7 @@ public class Order {
 	
 	public Double getTotalPrice() {
 		
-		return productShop.getPrice() * quantity;
+		return totalPrice;
 	}
 	
 	public void setTotalPrice(Double totalPrice) {
