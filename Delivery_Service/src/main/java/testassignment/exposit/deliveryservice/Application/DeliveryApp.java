@@ -34,6 +34,8 @@ public class DeliveryApp {
 					+ "What operation do you want to perform?");
 			
 			Integer operationResult = scanner.nextInt();
+			
+			// creating user
 			if (operationResult == 1) {
 				
 				System.out.println("Creating a new user.");
@@ -50,6 +52,8 @@ public class DeliveryApp {
 				System.out.print("Please enter your password: ");
 				String password = scanner.nextLine();
 				userService.save(name, surname, username, email, address, password);
+				
+				// adding store to database
 			} else if (operationResult == 2) {
 				
 				System.out.println("Adding a store.");
@@ -60,6 +64,8 @@ public class DeliveryApp {
 				System.out.print("Enter store markup: ");
 				Double markup = scanner.nextDouble();
 				shopService.save(name, address, markup);
+				
+				// adding to product to database
 			} else if (operationResult == 3) {
 				
 				System.out.println("Adding a product.");
@@ -84,6 +90,8 @@ public class DeliveryApp {
 				scanner.nextLine();
 				String productCategory = scanner.nextLine();
 				productService.save(name, price, productCategory);
+				
+				// linking a product to a store
 			} else if (operationResult == 4) {
 				
 				System.out.println("Adding a product to the store.");
@@ -99,6 +107,8 @@ public class DeliveryApp {
 				Integer quantity = scanner.nextInt();
 				productShopService.save(shopId, productId, quantity);
 			}
+			
+			// creating order
 		} else if (resultStart == 2) {
 			
 			System.out.println("Creating order.");
@@ -109,6 +119,8 @@ public class DeliveryApp {
 			System.out.println("To add a product enter 1, if you want to sort product enter 2");
 			
 			Integer currentStatusOrder = scanner.nextInt();
+			
+			// creating order without product sorting
 			if (currentStatusOrder == 1) {
 				
 				System.out.print("Enter product ID: ");
@@ -117,6 +129,7 @@ public class DeliveryApp {
 				Integer quantity = scanner.nextInt() - 1;
 				orderService.create(address, productId, quantity);
 				
+				//to sort products when creating an order
 			} else if (currentStatusOrder == 2) {
 				
 				System.out.println("Sort by category enter 1," +
@@ -124,6 +137,7 @@ public class DeliveryApp {
 						" by most expensive products enter 3");
 				int sort = scanner.nextInt();
 				
+				//sort product-shop by category
 				if (sort == 1) {
 					
 					String category = scanner.nextLine();
@@ -133,6 +147,8 @@ public class DeliveryApp {
 					System.out.print("Enter quantity: ");
 					Integer quantity = scanner.nextInt() - 1;
 					orderService.create(address, productId, quantity);
+					
+					//sort product-shop by cheapest product
 				} else if (sort == 2) {
 					
 					productShopService.sortByCheapest();
@@ -141,6 +157,8 @@ public class DeliveryApp {
 					System.out.print("Enter quantity: ");
 					Integer quantity = scanner.nextInt() - 1;
 					orderService.create(address, productId, quantity);
+					
+					//sort product-shop by most expensive
 				} else if (sort == 3) {
 					
 					productShopService.sortByMostExpensive();
@@ -151,13 +169,15 @@ public class DeliveryApp {
 					orderService.create(address, productId, quantity);
 				}
 			}
+			//data change operations
 		} else if (resultStart == 3) {
 			
 			System.out.println("If you want to change user data, enter 1.\n"
 					+ "If you want to change shop data, enter 2.\n"
 					+ "If you want to change product data, enter 3.");
-			
 			Integer changeResult = scanner.nextInt();
+			
+			//changing user data
 			if (changeResult == 1) {
 				
 				System.out.println("Changing user data.");
@@ -176,6 +196,8 @@ public class DeliveryApp {
 				System.out.print("Please enter your new address: ");
 				String address = scanner.nextLine();
 				userService.update(userId, name, surname, username, email, address);
+				
+				//changing store data
 			} else if (changeResult == 2) {
 				
 				System.out.println("Changing store data.");
@@ -188,6 +210,8 @@ public class DeliveryApp {
 				System.out.print("Enter the new name of the store: ");
 				String name = scanner.nextLine();
 				shopService.update(shopId, name, address);
+				
+				//changing product data
 			} else if (changeResult == 3) {
 				
 				System.out.println("Changing product data.");
@@ -201,6 +225,7 @@ public class DeliveryApp {
 				Double price = scanner.nextDouble();
 				productService.update(productId, name, price);
 			}
+			//deleting data
 		} else if (resultStart == 4) {
 			
 			System.out.println("If you want to delete user data, enter 1.\n"
@@ -209,6 +234,8 @@ public class DeliveryApp {
 					+ "If you want to delete product-shop data, enter 4.");
 			
 			Integer deleteResult = scanner.nextInt();
+			
+			//deleting user data
 			if (deleteResult == 1) {
 				
 				System.out.println("Deleting user data.");
@@ -216,6 +243,8 @@ public class DeliveryApp {
 				System.out.print("Please enter the user ID you want to delete: ");
 				Integer userId = scanner.nextInt() - 1;
 				userService.delete(userId);
+				
+				//deleting store data
 			} else if (deleteResult == 2) {
 				
 				System.out.println("Deleting store data.");
@@ -223,6 +252,8 @@ public class DeliveryApp {
 				System.out.print("Please enter the shop ID you want to delete: ");
 				Integer shopId = scanner.nextInt() - 1;
 				shopService.delete(shopId);
+				
+				//deleting product data
 			} else if (deleteResult == 3) {
 				
 				System.out.println("Deleting product data.");
@@ -230,6 +261,8 @@ public class DeliveryApp {
 				System.out.print("Please enter the product ID you want to delete: ");
 				Integer productId = scanner.nextInt() - 1;
 				productService.delete(productId);
+				
+				//deleting product-shop data
 			} else if (deleteResult == 4) {
 				
 				System.out.println("Deleting product-shop data.");
@@ -238,6 +271,7 @@ public class DeliveryApp {
 				Integer productShopId = scanner.nextInt() - 1;
 				productShopService.delete(productShopId);
 			}
+			// list the selected object
 		} else if (resultStart == 5) {
 			
 			System.out.println("If you want to see the list of users, enter 1.\n"
@@ -247,22 +281,32 @@ public class DeliveryApp {
 					+ "If you want to see the list of orders, enter 5");
 			
 			Integer seeResult = scanner.nextInt();
+			
+			// list of users
 			if (seeResult == 1) {
 				
 				System.out.println("List of users.");
 				System.out.println(databaseService.loadListOfUser());
+				
+				// list of stores
 			} else if (seeResult == 2) {
 				
 				System.out.println("List of stores.");
 				System.out.println(databaseService.loadListOfShop());
+				
+				// list of products
 			} else if (seeResult == 3) {
 				
 				System.out.println("List of products.");
 				System.out.println(databaseService.loadListOfProduct());
+				
+				// list of product-shops
 			} else if (seeResult == 4) {
 				
 				System.out.println("List of product-shops.");
 				System.out.println(databaseService.loadListOfProductShop());
+				
+				// list of orders
 			} else if (seeResult == 5) {
 				
 				System.out.println("List of orders.");
